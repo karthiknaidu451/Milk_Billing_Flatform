@@ -1,38 +1,201 @@
-.App {
-  text-align: center;
+/* Navbar container */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 15px 50px;
+  background-color: #1976d21d;
   color: white;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+/* Brand / Logo */
+.brand {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Navigation links */
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
 }
+
+.nav-links a:hover {
+  color: #ffeb3b;
+}
+
+/* Logout button */
+.logout-btn {
+  margin-left: 20px;
+  background-color: #ff5252;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #ff1744;
+}
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: linear-gradient(90deg,rgba(255, 0, 0, 0.741), #42a5f5);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  /* position: sticky;
+  top: 0;
+  z-index: 1000; */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+/* Brand */
+.brand {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.brand:hover {
+  color: #ffeb3b;
+  transform: scale(1.05);
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-links a::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #ffeb3b;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #ffeb3b;
+}
+
+
+.logout-btn {
+  margin-left: 20px;
+  background: #ff5252;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #ff1744;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+
+
+
+
+/* AppBar */
+.appbar {
+  background-color: #d2b619;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.appbar-title {
+  font-weight: bold;
+ 
+ 
+ 
+}
+
+.menu-button {
+  margin-right: 16px;
+  
+}
+
+/* Drawer */
+.drawer-paper {
+  background-color: white;
+  border-right: 1px solid #ccc;
+}
+
+.drawer-box {
+  width: 250px;
+  height: 100%;
+  padding-top: 16px;
+  
+}
+
+.drawer-title {
+  
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+
+
+}
+
+/* Drawer items */
+.drawer-item {
+  transition: 0.3s;
+   
+}
+
+.drawer-item:hover {
+  background-color: #0b58a694;
+  color: blue;
+}
+
+.drawer-item:hover .drawer-icon {
+  color: #fff;
+}
+
+.drawer-icon {
+  color: inherit;
+}
+
