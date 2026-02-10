@@ -12,11 +12,11 @@ export const sendBillEmail = ({ customer, cart, discount, grandTotal, payment })
 
   const message = `Your bill:
 Products: ${cart.map(i => `${i.name} x${i.qty}`).join(", ")}
-Subtotal: ₹${subTotal}
-Discount: ₹${discount}
-Grand Total: ₹${grandTotal}
-Paid: ₹${payment.paid}
-Balance: ₹${balance}`;
+Subtotal: INR ${subTotal}
+Discount: INR ${discount}
+Grand Total: INR ${grandTotal}
+Paid: INR ${payment.paid}
+Balance: INR ${balance}`;
 
   const emailContent = `
 <div style="font-family: system-ui, sans-serif, Arial; font-size: 12px">
@@ -50,6 +50,6 @@ Balance: ₹${balance}`;
     },
     "YOUR_PUBLIC_KEY"
   )
-  .then(() => alert("Email sent successfully!"))
-  .catch(err => alert("Failed to send email: " + err.text));
+    .then(() => alert("Email sent successfully!"))
+    .catch(err => alert("Failed to send email: " + err.text));
 };

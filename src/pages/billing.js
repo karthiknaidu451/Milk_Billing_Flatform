@@ -88,10 +88,10 @@ function BillingPage() {
         cart.map(item =>
           item.name === product
             ? {
-                ...item,
-                qty: item.qty + qty,
-                total: (item.qty + qty) * item.price,
-              }
+              ...item,
+              qty: item.qty + qty,
+              total: (item.qty + qty) * item.price,
+            }
             : item
         )
       );
@@ -166,21 +166,21 @@ function BillingPage() {
 
   // ---------------- WHATSAPP ----------------
   const handleWhatsApp = () => {
-    const message = `Hello ${customer.name}, your bill total is ₹${totalPayable}, Balance Due: ₹${balanceDue}`;
+    const message = `Hello ${customer.name}, your bill total is INR ${totalPayable}, Balance Due: INR ${balanceDue}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
     <div className="billing-container">
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "15px" }}>
-  <Lottie 
-    animationData={billingAnimation} 
-    loop 
-    autoplay 
-    style={{ width: 80, height: 80,marginTop:"-30px",marginLeft:"-5px"}} 
-  />
-  <h2 className="billing-title">Milk Point Billing</h2>
-</div>
+        <Lottie
+          animationData={billingAnimation}
+          loop
+          autoplay
+          style={{ width: 80, height: 80, marginTop: "-30px", marginLeft: "-5px" }}
+        />
+        <h2 className="billing-title">Milk Point Billing</h2>
+      </div>
 
       {/* Bill Info */}
       <div className="card">
@@ -193,7 +193,7 @@ function BillingPage() {
             <p><strong>Mobile:</strong> {customer.mobile || "-"}</p>
             <p><strong>Email:</strong> {customer.email || "-"}</p>
             {previousDue > 0 && (
-              <p style={{ color: "red" }}>Previous Due: ₹{previousDue}</p>
+              <p style={{ color: "red" }}>Previous Due: INR {previousDue}</p>
             )}
           </>
         )}
@@ -228,7 +228,7 @@ function BillingPage() {
         <select value={product} onChange={e => setProduct(e.target.value)}>
           {productsList.map(p => (
             <option key={p.name} value={p.name}>
-              {p.name} - ₹{p.price}
+              {p.name} - INR {p.price}
             </option>
           ))}
         </select>
@@ -267,8 +267,8 @@ function BillingPage() {
               <tr key={item.name}>
                 <td>{item.name}</td>
                 <td>{item.qty}</td>
-                <td>₹{item.price}</td>
-                <td>₹{item.total}</td>
+                <td>INR {item.price}</td>
+                <td>INR {item.total}</td>
                 <td>
                   <button className="danger" onClick={() => handleRemove(item.name)}>
                     Delete
@@ -287,13 +287,13 @@ function BillingPage() {
         />
 
         {/* <p>Sub Total: ₹{subTotal}</p> */}
-        <h3 style={{ color: "blue",marginBottom:"5px" }}>Grand Total: ₹{grandTotal}</h3>
+        <h3 style={{ color: "blue", marginBottom: "5px" }}>Grand Total: INR {grandTotal}</h3>
 
         {previousDue > 0 && (
-          <p style={{ color: "red", fontWeight: "bold" }}>Previous Due: ₹{previousDue}</p>
+          <p style={{ color: "red", fontWeight: "bold" }}>Previous Due: INR {previousDue}</p>
         )}
 
-        <p style={{ fontWeight: "bold",marginBottom:"-5px"  }}>Total Payable: ₹{totalPayable}</p>
+        <p style={{ fontWeight: "bold", marginBottom: "-5px" }}>Total Payable: INR {totalPayable}</p>
       </div>
 
       {/* Payment */}
@@ -316,7 +316,7 @@ function BillingPage() {
         />
 
         <p style={{ color: "red", fontWeight: "bold" }}>
-          Balance Due: ₹{balanceDue}
+          Balance Due: INR {balanceDue}
         </p>
       </div>
 

@@ -123,7 +123,7 @@ const Dashboard = () => {
 
     customerMap[mobile].bills += 1;
     customerMap[mobile].total += Number(bill.grandTotal || 0);
-      customerMap[mobile].due += Number(bill.due ?? bill.balanceDue ?? 0);
+    customerMap[mobile].due += Number(bill.due ?? bill.balanceDue ?? 0);
   });
 
   const customerList = Object.values(customerMap);
@@ -147,17 +147,17 @@ const Dashboard = () => {
       <div className="dashboard-grid">
         <div className="dashboard-card">
           <div className="card-title">Total Sales Today</div>
-          <div className="card-value">₹ {totalSalesToday}</div>
+          <div className="card-value">INR {totalSalesToday}</div>
         </div>
 
         <div className="dashboard-card">
           <div className="card-title">Total Sales This Month</div>
-          <div className="card-value">₹ {totalSalesMonth}</div>
+          <div className="card-value">INR {totalSalesMonth}</div>
         </div>
 
         <div className="dashboard-card">
           <div className="card-title">Total Sales This Year</div>
-          <div className="card-value">₹ {totalSalesYear}</div>
+          <div className="card-value">INR {totalSalesYear}</div>
         </div>
 
         <div className="dashboard-card">
@@ -202,8 +202,8 @@ const Dashboard = () => {
                   <td>{c.name}</td>
                   <td>{c.mobile}</td>
                   <td>{c.bills}</td>
-                  <td style={{color:"green"}}>₹ {c.total.toLocaleString()}</td>
-                  <td style={{color:"red"}}>₹ {c.due.toLocaleString()}</td>
+                  <td style={{ color: "green" }}>INR {c.total.toLocaleString()}</td>
+                  <td style={{ color: "red" }}>INR {c.due.toLocaleString()}</td>
                 </tr>
               ))
             )}
