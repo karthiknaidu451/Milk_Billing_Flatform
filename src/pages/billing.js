@@ -16,23 +16,29 @@ const productsList = [
   { name: "Butter", price: 120 },
 ];
 
-const generateBillNo = () => {
-  const date = new Date();
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, "0");
-  const dd = String(date.getDate()).padStart(2, "0");
-
-  const todayKey = `${yyyy}${mm}${dd}`;
-  const counterData = JSON.parse(localStorage.getItem("billCounter")) || {};
-  const count = (counterData[todayKey] || 0) + 1;
-
-  counterData[todayKey] = count;
-  localStorage.setItem("billCounter", JSON.stringify(counterData));
-
-  return `MP-${todayKey}-${String(count).padStart(3, "0")}`;
-};
+// ---------------- Helper ----------------
+const getCurrentUser = () => localStorage.getItem("currentUser") || "admin";
 
 function BillingPage() {
+  const currentUser = getCurrentUser();
+
+  const generateBillNo = () => {
+    const date = new Date();
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+
+    const todayKey = `${yyyy}${mm}${dd}`;
+    const counterKey = `${currentUser}_billCounter`;
+    const counterData = JSON.parse(localStorage.getItem(counterKey)) || {};
+    const count = (counterData[todayKey] || 0) + 1;
+
+    counterData[todayKey] = count;
+    localStorage.setItem(counterKey, JSON.stringify(counterData));
+
+    return `MP-${todayKey}-${String(count).padStart(3, "0")}`;
+  };
+
   // ---------------- Customer ----------------
   const [customer, setCustomer] = useState({ name: "", mobile: "", email: "" });
   const [previousDue, setPreviousDue] = useState(0); // previous due amount
@@ -56,7 +62,7 @@ function BillingPage() {
 
   // ---------------- Effects ----------------
   useEffect(() => {
-    const savedBill = JSON.parse(localStorage.getItem("billingData"));
+    const savedBill = JSON.parse(localStorage.getItem(`${currentUser}_billingData`));
     if (savedBill) {
       setCustomer(savedBill.customer);
       setCart(savedBill.cart);
@@ -69,12 +75,12 @@ function BillingPage() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     const billingData = { customer, cart, discount, payment };
-    localStorage.setItem("billingData", JSON.stringify(billingData));
-  }, [customer, cart, discount, payment]);
+    localStorage.setItem(`${currentUser}_billingData`, JSON.stringify(billingData));
+  }, [customer, cart, discount, payment, currentUser]);
 
   // ---------------- Handlers ----------------
   const handleAddProduct = () => {
@@ -118,7 +124,8 @@ function BillingPage() {
   const handleCustomerMobileChange = mobile => {
     setCustomer({ ...customer, mobile });
     if (mobile.length >= 10) {
-      const dues = JSON.parse(localStorage.getItem("customerDues")) || {};
+      const duesKey = `${currentUser}_customerDues`;
+      const dues = JSON.parse(localStorage.getItem(duesKey)) || {};
       setPreviousDue(dues[mobile] || 0);
     } else {
       setPreviousDue(0);
@@ -151,14 +158,16 @@ function BillingPage() {
       date: dateTime,
     };
 
-    const history = JSON.parse(localStorage.getItem("billHistory")) || [];
+    const historyKey = `${currentUser}_billHistory`;
+    const history = JSON.parse(localStorage.getItem(historyKey)) || [];
     history.push(bill);
-    localStorage.setItem("billHistory", JSON.stringify(history));
+    localStorage.setItem(historyKey, JSON.stringify(history));
 
     // Store updated due for customer
-    const dues = JSON.parse(localStorage.getItem("customerDues")) || {};
+    const duesKey = `${currentUser}_customerDues`;
+    const dues = JSON.parse(localStorage.getItem(duesKey)) || {};
     dues[customer.mobile] = balanceDue;
-    localStorage.setItem("customerDues", JSON.stringify(dues));
+    localStorage.setItem(duesKey, JSON.stringify(dues));
 
     setBillNo(generateBillNo());
     alert(`Bill ${billNo} saved successfully!`);

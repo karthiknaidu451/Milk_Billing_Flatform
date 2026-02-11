@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-   background: linear-gradient(135deg, #a8edea, #fed6e3);
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
 }
 
 .login-container {
@@ -10,20 +10,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  
-  
+
+
 }
+
 .lottie-animation {
-  width: 550px;           
-  max-width: 100%;          
-  margin-right: 40px;      
+    width: 550px;
+    max-width: 100%;
+    margin-right: 40px;
 }
 
 .login-form {
     background: #fff;
     padding: 40px 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* slightly deeper shadow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    /* slightly deeper shadow */
     width: 350px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -48,7 +50,8 @@ body {
 
 .login-form h2:hover {
     transform: scale(1.05);
-    color: #6a1bff; /* subtle hover color change */
+    color: #6a1bff;
+    /* subtle hover color change */
 }
 
 .form-group {
@@ -112,4 +115,8 @@ body {
 .login-btn:hover {
     background: linear-gradient(135deg, #0056b3, #003f7f);
     transform: translateY(-2px);
+}
+
+.auth-link:hover {
+    text-decoration: underline;
 }

@@ -25,6 +25,7 @@ function App() {
 
   const logout = () => {
     localStorage.removeItem("isLoggedIn"); // clear storage
+    localStorage.removeItem("currentUser"); // clear currentUser
     alert("Logged out Successfully");
     setIsLoggedIn(false);
   };

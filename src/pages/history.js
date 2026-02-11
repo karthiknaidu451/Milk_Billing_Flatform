@@ -9,11 +9,14 @@ function History() {
   const [toDate, setToDate] = useState("");
   const [historyTab] = useState("bill"); // only billing for now
 
+  const currentUser = localStorage.getItem("currentUser") || "admin";
+  const historyKey = `${currentUser}_billHistory`;
+
   // Load bills from localStorage
   useEffect(() => {
-    const savedBills = JSON.parse(localStorage.getItem("billHistory")) || [];
+    const savedBills = JSON.parse(localStorage.getItem(historyKey)) || [];
     setBillingData(savedBills);
-  }, []);
+  }, [historyKey]);
 
   // Filter bills based on search and date
   const filteredBills = billingData.filter(bill => {
@@ -60,7 +63,7 @@ function History() {
             <button className="dropbtn"> Download</button>
             <div className="dropdown-content">
               <button onClick={() => alert("Download Billing CSV")}>Billing (CSV)</button>
-              <button onClick={() => { localStorage.removeItem("billHistory"); setBillingData([]); }}>Clear Billing</button>
+              <button onClick={() => { localStorage.removeItem(historyKey); setBillingData([]); }}>Clear Billing</button>
               <button onClick={() => window.print()}>Print</button>
             </div>
           </div>

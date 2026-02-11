@@ -7,11 +7,14 @@ const Dashboard = () => {
   const [billingData, setBillingData] = useState([]);
   const [phoneFilter, setPhoneFilter] = useState("");
 
+  const currentUser = localStorage.getItem("currentUser") || "admin";
+
   // Load billing history from localStorage
   useEffect(() => {
-    const savedBills = JSON.parse(localStorage.getItem("billHistory")) || [];
+    const historyKey = `${currentUser}_billHistory`;
+    const savedBills = JSON.parse(localStorage.getItem(historyKey)) || [];
     setBillingData(savedBills);
-  }, []);
+  }, [currentUser]);
 
   const now = new Date();
   const today = now.toISOString().slice(0, 10);
